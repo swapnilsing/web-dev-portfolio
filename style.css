@@ -1,0 +1,86 @@
+/* Custom Styles & Utilities */
+body {
+    background-color: #050505;
+    color: #e5e5e5;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Utilities */
+.glass-nav {
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+    background: rgba(30, 30, 30, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ff3333;
+}
+
+/* Text Selection */
+::selection {
+    background: #ff3333;
+    color: white;
+}
+
+/* Hero Background Overlay */
+.hero-bg {
+    /* Fallback color + Gradient + Image */
+    background-image: linear-gradient(to bottom, rgba(5,5,5,0.3), rgba(5,5,5,1)), url('e.avif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+}
+
+/* 3D Tilt Effect Utilities */
+.tilt-card {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+.tilt-content {
+    transform: translateZ(20px);
+}
+
+/* Glitch Effect on Hover for Name */
+.glitch-hover:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: #ff3333;
+}
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+/* Utilities for JS Observer */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

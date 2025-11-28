@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapnil Singh | Full Stack Developer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1e1e1e',
+                        },
+                        accent: {
+                            red: '#ff3333',
+                            cyan: '#06b6d4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'text-gradient': 'text-gradient 3s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        'text-gradient': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold font-mono tracking-tighter group">
+                SWAPNIL<span class="text-accent-red group-hover:text-white transition-colors">.DEV</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-sm font-medium text-gray-300 hover:text-accent-red transition-colors">HOME</a>
+                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-accent-red transition-colors">ABOUT</a>
+                <a href="#skills" class="text-sm font-medium text-gray-300 hover:text-accent-red transition-colors">SKILLS</a>
+                <a href="#projects" class="text-sm font-medium text-gray-300 hover:text-accent-red transition-colors">PROJECTS</a>
+                <a href="#contact" class="px-5 py-2 rounded-full border border-accent-red text-accent-red hover:bg-accent-red hover:text-white transition-all duration-300 text-sm font-bold">LET'S TALK</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 md:hidden">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <a href="#home" class="mobile-link text-2xl font-bold hover:text-accent-red">HOME</a>
+            <a href="#about" class="mobile-link text-2xl font-bold hover:text-accent-red">ABOUT</a>
+            <a href="#skills" class="mobile-link text-2xl font-bold hover:text-accent-red">SKILLS</a>
+            <a href="#projects" class="mobile-link text-2xl font-bold hover:text-accent-red">PROJECTS</a>
+            <a href="#contact" class="mobile-link text-2xl font-bold text-accent-red">CONTACT</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center hero-bg overflow-hidden">
+        
+        <!-- Animated Particles (Simulated) -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent-red/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] animate-pulse-slow" style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-gray-700 bg-gray-900/50 backdrop-blur-sm">
+                <span class="text-accent-red text-xs font-bold tracking-widest uppercase">Available for hire</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 glitch-hover cursor-default">
+                SWAPNIL SINGH
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-400 mb-6 max-w-2xl mx-auto font-light">
+                <span class="text-white font-semibold">Full Stack Developer</span> crafting data-driven applications and immersive web experiences.
+            </p>
+
+            <p class="text-xs md:text-sm text-gray-500 mb-10 font-mono tracking-[0.2em] uppercase opacity-80">
+                Innovating with Code <span class="text-accent-red">•</span> Solving with Logic <span class="text-accent-red">•</span> Delivering with Passion
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="group relative px-8 py-4 bg-accent-red text-white font-bold rounded-lg overflow-hidden shadow-lg shadow-red-900/20 hover:shadow-red-600/40 transition-all">
+                    <span class="relative z-10 flex items-center gap-2">View My Work <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                </a>
+                <a href="#contact" class="px-8 py-4 rounded-lg border border-gray-600 hover:border-white hover:bg-white hover:text-black transition-all font-bold">
+                    Contact Me
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-500 hover:text-white transition-colors">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-dark-900 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                
+                <!-- Image/Visual Column -->
+                <div class="reveal-section relative group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-accent-red to-blue-600 rounded-2xl transform rotate-3 group-hover:rotate-2 transition-transform opacity-70 blur-lg"></div>
+                    <div class="relative bg-dark-800 border border-gray-800 rounded-2xl p-8 h-full glass-card overflow-hidden">
+                        <div class="flex items-center gap-2 mb-4 text-gray-500 font-mono text-sm border-b border-gray-700 pb-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-auto">about_me.py</span>
+                        </div>
+                        <pre class="font-mono text-sm text-gray-300 overflow-x-auto">
+<span class="text-pink-500">class</span> <span class="text-blue-400">Developer</span>:
+    <span class="text-pink-500">def</span> <span class="text-yellow-300">__init__</span>(self):
+        self.name = <span class="text-green-400">"Swapnil Singh"</span>
+        self.role = <span class="text-green-400">"B.Tech CS Student"</span>
+        self.passion = <span class="text-green-400">"Data-driven Apps"</span>
+
+    <span class="text-pink-500">def</span> <span class="text-yellow-300">current_status</span>(self):
+        <span class="text-pink-500">return</span> {
+            <span class="text-green-400">"focus"</span>: <span class="text-green-400">"Backend & ML"</span>,
+            <span class="text-green-400">"learning"</span>: <span class="text-green-400">"Adv. Algorithms"</span>,
+            <span class="text-green-400">"coffee_level"</span>: <span class="text-purple-400">100</span>
+        }
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- Text Column -->
+                <div class="reveal-section">
+                    <h2 class="text-4xl font-bold mb-6 flex items-center gap-3">
+                        About Me
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                        I am a determined <strong class="text-white">B.Tech Computer Science student</strong> passionate about creating effective, data-driven applications. With a strong command of <strong class="text-accent-red">Python</strong> and modern web technologies, I bridge the gap between complex backend logic and user-friendly interfaces.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        My expertise extends to backend programming, automation, ML model prototyping, and API integration. I enjoy working with <span class="text-white font-mono bg-gray-800 px-2 py-1 rounded text-sm">HTML</span>, <span class="text-white font-mono bg-gray-800 px-2 py-1 rounded text-sm">CSS</span>, and <span class="text-white font-mono bg-gray-800 px-2 py-1 rounded text-sm">JavaScript</span> to bring ideas to life.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-graduation-cap text-accent-red"></i> B.Tech CS
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-location-dot text-accent-red"></i> India
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-black relative overflow-hidden">
+        <!-- Background Grid Pattern -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMS0xVjFoMzh2MzhIMUMxeiIgZmlsbD0iIzIyMiIgZmlsbC1vcGFjaXR5PSIwLjIiLz48L2c+PC9zdmc+')] opacity-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-section">
+                <h2 class="text-4xl font-bold mb-4">Technical Arsenal</h2>
+                <p class="text-gray-400">The tools and technologies I use to build robust applications.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <!-- Skill Card 1 -->
+                <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-orange-500/50">
+                    <i class="fa-brands fa-html5 text-5xl text-gray-500 group-hover:text-orange-500 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">HTML5</span>
+                </div>
+                <!-- Skill Card 2 -->
+                <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-blue-500/50" style="transition-delay: 100ms">
+                    <i class="fa-brands fa-css3-alt text-5xl text-gray-500 group-hover:text-blue-500 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">CSS3</span>
+                </div>
+                <!-- Skill Card 3 -->
+                <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-yellow-400/50" style="transition-delay: 200ms">
+                    <i class="fa-brands fa-js text-5xl text-gray-500 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">JavaScript</span>
+                </div>
+                <!-- Skill Card 4 -->
+                <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-blue-400/50" style="transition-delay: 300ms">
+                    <i class="fa-brands fa-python text-5xl text-gray-500 group-hover:text-blue-400 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">Python</span>
+                </div>
+                <!-- Skill Card 5 -->
+                <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-orange-600/50">
+                    <i class="fa-brands fa-git-alt text-5xl text-gray-500 group-hover:text-orange-600 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">Git</span>
+                </div>
+                <!-- Skill Card 6 -->
+                <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-orange-400/50" style="transition-delay: 100ms">
+                    <svg class="w-12 h-12 text-gray-500 group-hover:text-orange-400 transition-colors duration-300 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.293 0L0 1.538h22.712l1.288-1.538H1.293zM2.576 2.578L.645 24h5.503l.379-4.223h5.7l-.38 4.223h5.498L15.42 2.578H2.576zm5.688 6.804h5.7l-.762 8.438h-5.7l.762-8.438z"/>
+                    </svg>
+                    <span class="font-bold text-gray-300 group-hover:text-white">TensorFlow</span>
+                </div>
+                 <!-- Skill Card 7 -->
+                 <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-cyan-400/50" style="transition-delay: 200ms">
+                    <i class="fa-brands fa-react text-5xl text-gray-500 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">React</span>
+                </div>
+                 <!-- Skill Card 8 -->
+                 <div class="reveal-section glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 hover:bg-gray-800/50 transition-colors group cursor-default border border-gray-800 hover:border-green-500/50" style="transition-delay: 300ms">
+                    <i class="fa-brands fa-node-js text-5xl text-gray-500 group-hover:text-green-500 transition-colors duration-300"></i>
+                    <span class="font-bold text-gray-300 group-hover:text-white">Node.js</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-dark-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal-section">
+                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Selected works from my portfolio.</p>
+                <div class="mt-6 hidden md:flex justify-center">
+                    <a href="https://github.com/swapnilsing" target="_blank" class="flex items-center gap-2 text-accent-red hover:text-white transition-colors font-medium">
+                        View GitHub <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="reveal-section group perspective-container">
+                    <div class="glass-card rounded-2xl p-1 border-t border-gray-700 hover:border-accent-red transition-colors duration-500 h-full tilt-card">
+                        <div class="bg-dark-800/50 rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
+                            <!-- Decorative background glow -->
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-accent-red/20 blur-[60px] rounded-full transition-all group-hover:bg-accent-red/30"></div>
+                            
+                            <div class="flex justify-between items-start mb-6 tilt-content">
+                                <div class="p-3 bg-gray-800 rounded-lg text-accent-red">
+                                    <i class="fa-solid fa-brain text-2xl"></i>
+                                </div>
+                                <div class="flex gap-4">
+                                    <a href="https://github.com/swapnilsing/CarePulse.git" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-accent-red transition-colors tilt-content">CarePulse</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed flex-grow tilt-content">
+                                ML Powered Alzheimer's Detector. A multi-modal detection pipeline combining MRI based ensemble CNN features, MMSE scores, and APOE4 genetics. Includes XAI driven interpretability and a HIPAA compliant clinician dashboard.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 tilt-content">
+                                <span class="px-3 py-1 text-xs font-mono text-accent-red bg-red-900/10 rounded-full border border-red-900/30">Python</span>
+                                <span class="px-3 py-1 text-xs font-mono text-accent-red bg-red-900/10 rounded-full border border-red-900/30">TensorFlow</span>
+                                <span class="px-3 py-1 text-xs font-mono text-accent-red bg-red-900/10 rounded-full border border-red-900/30">CNN</span>
+                                <span class="px-3 py-1 text-xs font-mono text-accent-red bg-red-900/10 rounded-full border border-red-900/30">XAI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="reveal-section group perspective-container" style="transition-delay: 200ms">
+                    <div class="glass-card rounded-2xl p-1 border-t border-gray-700 hover:border-blue-500 transition-colors duration-500 h-full tilt-card">
+                        <div class="bg-dark-800/50 rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
+                            <!-- Decorative background glow -->
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/20 blur-[60px] rounded-full transition-all group-hover:bg-blue-500/30"></div>
+                            
+                            <div class="flex justify-between items-start mb-6 tilt-content">
+                                <div class="p-3 bg-gray-800 rounded-lg text-blue-400">
+                                    <i class="fa-solid fa-cloud-sun text-2xl"></i>
+                                </div>
+                                <div class="flex gap-4">
+                                    <a href="https://github.com/swapnilsing/SKY_ALERT.git" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors tilt-content">SkyAlert</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed flex-grow tilt-content">
+                                Real-Time Weather Forecasting Website. A full-stack weather app that shows hourly forecasts, a 7-day view, and a toggle between C° and F° with a fully responsive UI.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 tilt-content">
+                                <span class="px-3 py-1 text-xs font-mono text-blue-400 bg-blue-900/10 rounded-full border border-blue-900/30">JavaScript</span>
+                                <span class="px-3 py-1 text-xs font-mono text-blue-400 bg-blue-900/10 rounded-full border border-blue-900/30">API</span>
+                                <span class="px-3 py-1 text-xs font-mono text-blue-400 bg-blue-900/10 rounded-full border border-blue-900/30">HTML/CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 (Culina) -->
+                <div class="reveal-section group perspective-container" style="transition-delay: 400ms">
+                    <div class="glass-card rounded-2xl p-1 border-t border-gray-700 hover:border-orange-500 transition-colors duration-500 h-full tilt-card">
+                        <div class="bg-dark-800/50 rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
+                            <!-- Decorative background glow -->
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-orange-500/20 blur-[60px] rounded-full transition-all group-hover:bg-orange-500/30"></div>
+                            
+                            <div class="flex justify-between items-start mb-6 tilt-content">
+                                <div class="p-3 bg-gray-800 rounded-lg text-orange-500">
+                                    <i class="fa-solid fa-utensils text-2xl"></i>
+                                </div>
+                                <div class="flex gap-4">
+                                    <a href="https://github.com/swapnilsing/Culina.git" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors tilt-content">Culina</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed flex-grow tilt-content">
+                                Recipe Discovery Web App. A recipe discovery platform built with the TheMealDB API that lets you search for recipes using ingredients.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 tilt-content">
+                                <span class="px-3 py-1 text-xs font-mono text-orange-500 bg-orange-900/10 rounded-full border border-orange-900/30">HTML</span>
+                                <span class="px-3 py-1 text-xs font-mono text-orange-500 bg-orange-900/10 rounded-full border border-orange-900/30">CSS</span>
+                                <span class="px-3 py-1 text-xs font-mono text-orange-500 bg-orange-900/10 rounded-full border border-orange-900/30">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 (SmogSense) -->
+                <div class="reveal-section group perspective-container" style="transition-delay: 600ms">
+                    <div class="glass-card rounded-2xl p-1 border-t border-gray-700 hover:border-emerald-500 transition-colors duration-500 h-full tilt-card">
+                        <div class="bg-dark-800/50 rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
+                            <!-- Decorative background glow -->
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-emerald-500/20 blur-[60px] rounded-full transition-all group-hover:bg-emerald-500/30"></div>
+                            
+                            <div class="flex justify-between items-start mb-6 tilt-content">
+                                <div class="p-3 bg-gray-800 rounded-lg text-emerald-500">
+                                    <i class="fa-solid fa-smog text-2xl"></i>
+                                </div>
+                                <div class="flex gap-4">
+                                    <a href="https://github.com/swapnilsing/SmogSense_AQI_Detector.git" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-500 transition-colors tilt-content">SmogSense</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed flex-grow tilt-content">
+                                AI model for pollution detection and AQI forecasting throughout India. Trained a Random Forest Regression model on multi-year data (2013–2025) cleaned with Pandas and NumPy.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 tilt-content">
+                                <span class="px-3 py-1 text-xs font-mono text-emerald-500 bg-emerald-900/10 rounded-full border border-emerald-900/30">Python</span>
+                                <span class="px-3 py-1 text-xs font-mono text-emerald-500 bg-emerald-900/10 rounded-full border border-emerald-900/30">Pandas</span>
+                                <span class="px-3 py-1 text-xs font-mono text-emerald-500 bg-emerald-900/10 rounded-full border border-emerald-900/30">Random Forest</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8 text-center md:hidden">
+                <a href="https://github.com/swapnilsing" target="_blank" class="inline-flex items-center gap-2 text-white border border-gray-700 px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors">
+                    View More on GitHub <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-black relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-accent-red/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+
+        <div class="container mx-auto px-6 max-w-4xl relative z-10">
+            <div class="glass-card rounded-2xl p-8 md:p-12 text-center reveal-section border-t-4 border-accent-red hover:shadow-2xl hover:shadow-red-900/20 transition-all duration-500 group">
+                
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-red-200 to-accent-red animate-text-gradient bg-300%">
+                    Ready to Collaborate?
+                </h2>
+                
+                <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto group-hover:text-gray-300 transition-colors duration-300">
+                    I am actively seeking new opportunities to contribute to impactful projects. If you have a vision you'd like to realize or a technical challenge to solve, I'm ready to discuss how we can work together.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
+                    <!-- Email Button -->
+                    <a href="mailto:swa929911@gmail.com" class="relative overflow-hidden flex items-center gap-3 px-8 py-4 bg-accent-red text-white font-bold rounded-lg transition-all shadow-lg shadow-red-900/30 hover:shadow-red-500/50 hover:-translate-y-1 group/btn">
+                        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:animate-shimmer"></span>
+                        <i class="fa-solid fa-envelope group-hover/btn:animate-bounce"></i> 
+                        <span>swa929911@gmail.com</span>
+                    </a>
+                    
+                    <a href="https://github.com/swapnilsing" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-8 py-4 bg-dark-800 hover:bg-dark-700 text-white font-bold rounded-lg transition-all border border-gray-700 hover:border-gray-500 hover:shadow-lg hover:shadow-gray-800/50">
+                        <i class="fa-brands fa-github text-xl"></i> Visit GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 py-8 border-t border-gray-900">
+        <div class="container mx-auto px-6 text-center text-gray-500 text-sm">
+            <div class="mb-4 flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/swapnil-singh-24b7b1220" target="_blank" class="hover:text-accent-red transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
+            </div>
+            <p>&copy; 2025 Swapnil Singh. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
