@@ -1,0 +1,771 @@
+/* ============================================== */
+/* CSS STYLESHEET FOR PORTFOLIO                   */
+/* ============================================== */
+/* This file controls how your portfolio looks    */
+/* Each section is clearly labeled below          */
+/* ============================================== */
+
+/* ============================================== */
+/* BASIC RESET - Removes default browser styles  */
+/* ============================================== */
+* {
+    margin: 0;              /* Removes default spacing */
+    padding: 0;             /* Removes default padding */
+    box-sizing: border-box; /* Makes sizing easier to calculate */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Main font */
+    line-height: 1.6;       /* Space between lines of text */
+    color: #060505;         /* Secondary color for text */
+    background: linear-gradient(to bottom, #dde8e3 0%, #c8d9d1 100%); /* Primary foreground gradient background */
+}
+
+/* ============================================== */
+/* THEME PALETTE - Centralized color variables   */
+/* Change these values to re-theme the site      */
+/* ============================================== */
+:root {
+    --bg-100: #f4f7fb;         /* page background light */
+    --muted-600: #6b7280;      /* muted slate for secondary text */
+    --accent-navy: #0f1724;    /* deep slate navy */
+    --accent-teal: #06b6d4;    /* crisp cyan */
+    --accent-coral: #ff7a59;   /* warm coral accent */
+    --accent-amber: #ffb020;   /* highlight amber */
+    --card-bg: #ffffff;        /* card / section background */
+    --glass: rgba(255,255,255,0.06);
+    --shadow-strong: rgba(16,40,64,0.12);
+    /* animation timing tokens */
+    --dur-fast: 180ms;
+    --dur-medium: 700ms;
+    --dur-slow: 1200ms;
+    --ease-std: cubic-bezier(.2,.9,.3,1);
+    /* subtle bubble fills (semi-transparent) */
+    --accent-teal-08: rgba(6,182,212,0.08);
+    --accent-coral-08: rgba(255,122,89,0.08);
+    --accent-amber-08: rgba(255,176,32,0.08);
+    --accent-navy-06: rgba(15,23,36,0.06);
+    /* hero overlay control - tweak these to change tint/strength */
+    --hero-overlay-start: rgba(227,243,9,0.18);
+    --hero-overlay-end: rgba(15,118,221,0.18);
+}
+
+/* Apply palette to a few base elements */
+body {
+    background: linear-gradient(180deg, var(--bg-100) 0%, #e9f0f6 100%);
+    color: #0e6ddb;
+}
+
+nav {
+    background: linear-gradient(135deg, var(--accent-navy) 0%, #183154 100%);
+    box-shadow: 0 6px 28px rgba(3,20,40,0.18);
+}
+
+nav h2 { color: var(--accent-coral); }
+
+nav a { color: var(--muted-600); }
+
+section { background: var(--card-bg); }
+
+section h2::after { background: var(--accent-teal); box-shadow: 0 4px 12px rgba(14,207,127,0.18); }
+
+/* Hero uses a bolder two-tone gradient from navy into teal */
+.hero {
+    background: linear-gradient(135deg, var(--accent-navy) 0%, #174a6b 45%, var(--accent-teal) 100%);
+    box-shadow: 0 18px 60px var(--shadow-strong);
+    color: #fbfdff;
+    background-size: 200% 200%;
+    animation: gradientShift 14s ease-in-out infinite;  
+}
+
+/* Buttons use the coral / navy pairing */
+.btn { background-color: var(--accent-navy); color: #fff; }
+.btn:hover { background-color: var(--accent-teal); }
+
+.btn-secondary {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(14,207,127,0.14);
+    color: #fff;
+}
+
+/* Skill badges pick up the teal; change on hover to coral */
+.skill { background-color: var(--accent-teal); color: #06323b; border: 2px solid rgba(3,20,40,0.08); }
+.skill:hover { background-color: var(--accent-coral); color: #fff; }
+
+/* Project cards get a subtle coral-tinted border on hover */
+.project-card { background: linear-gradient(180deg,#ffffff 0%, #fbfbfe 100%); }
+.project-card:hover { border-color: rgba(255,107,107,0.18); box-shadow: 0 22px 50px rgba(11,37,69,0.12); }
+
+footer { background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-navy) 100%); color: #fff; }
+
+
+/* ============================================== */
+/* NAVIGATION BAR - Sticky header at the top     */
+/* ============================================== */
+nav {
+    background: linear-gradient(135deg, #242424 0%, #1a1a1a 100%); /* Secondary dark gradient background */
+    padding: 1.2rem 0;         /* Top and bottom spacing */
+    position: sticky;          /* Stays at top when scrolling */
+    top: 0;                    /* Position at very top */
+    box-shadow: 0 4px 20px rgba(122, 11, 11, 0.3); /* Enhanced shadow */
+    z-index: 100;              /* Keeps nav above other content */
+}
+
+.nav-content {
+    max-width: 1200px;         /* Maximum width of content */
+    margin: 0 auto;            /* Centers the navigation */
+    padding: 0 40px;           /* Left and right spacing */
+    display: flex;             /* Flexbox for layout */
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center;       /* Vertically centers items */
+}
+
+nav h2 {
+    color: rgb(251, 3, 3);              /* White text for logo */
+    font-size: 1.5rem;         /* Size of logo text */
+}
+
+nav ul {
+    list-style: none;          /* Removes bullet points */
+    display: flex;             /* Displays links in a row */
+    gap: 30px;                 /* Space between each link */
+}
+
+nav a {
+    color: rgb(169, 164, 164);              /* White text for links */
+    text-decoration: none;     /* Removes underline */
+    font-weight: 500;          /* Medium bold text */
+    transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+nav a:hover {
+    color: #1a1c1b;            /* Primary green color when hovering */
+    background-color: #150d0d; /* Secondary foreground background */
+    padding: 5px 10px;         /* Add padding on hover */
+    border-radius: 5px;        /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* ============================================== */
+/* SECTIONS - General styling for all sections   */
+/* ============================================== */
+section {
+    max-width: 1200px;         /* Maximum width */
+    margin: 0 auto;            /* Centers the section */
+    padding: 80px 40px;        /* Top/bottom and left/right spacing */
+    background-color: #fafafa; /* Secondary foreground (light background) */
+    border-radius: 20px;       /* Rounded corners */
+    margin-bottom: 30px;       /* Space between sections */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12); /* Depth shadow */
+}
+
+section h2 {
+    font-size: 2.5rem;         /* Large heading size */
+    margin-bottom: 50px;       /* Space below heading */
+    color: #905d5d;            /* Secondary dark color */
+    text-align: center;        /* Centers the heading */
+    position: relative;        /* Needed for the underline effect */
+    padding-bottom: 20px;      /* Space for underline */
+}
+
+/* Creates a decorative line under section headings */
+section h2::after {
+    content: '';               /* Required for pseudo-element */
+    position: absolute;        /* Positions relative to h2 */
+    bottom: 0;                 /* At the bottom of h2 */
+    left: 50%;                 /* Starts at center */
+    transform: translateX(-50%); /* Centers the line */
+    width: 0;                  /* animated: grow on reveal */
+    height: 5px;               /* Thicker line */
+    background: #0ecf7f;       /* Primary green color */
+    border-radius: 3px;        /* Rounded edges */
+    box-shadow: 0 3px 10px rgba(0, 98, 57, 0.3); /* Green shadow */
+}
+
+/* When the section becomes visible, grow the underline */
+section.reveal.is-visible h2::after {
+    width: 120px;
+    transition: width 620ms cubic-bezier(.2,.9,.3,1) 120ms;
+}
+
+/* ============================================== */
+/* HERO SECTION - The big welcome area           */
+/* ============================================== */
+.hero {
+    text-align: center;        /* Centers all text */
+    padding: 120px 20px;       /* Large top/bottom spacing */
+    background: linear-gradient(135deg, #006239 0%, #004d2d 100%); /* Primary green gradient */
+    /* To use an image instead, uncomment below and replace 'your-image.jpg' with your image path: */
+    /* background-image: url('your-image.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+    background-image: url('e.avif');
+    background-size: cover;
+    background-position: center; 
+    color: #fafafa;            /* Secondary foreground (light text) */
+    box-shadow: 0 15px 50px rgba(0, 98, 57, 0.4); /* Green glow */
+    border-radius: 20px;       /* Rounded corners */
+    margin-bottom: 30px;       /* Space below hero */
+
+    /* animations were moved to top-level to avoid invalid nested at-rules */
+}
+
+/* HERO ANIMATIONS - entrance, float and gradient (top-level) */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatY {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Apply entrance animations to hero content (top-level selectors) */
+.hero h1 { animation: fadeUp 800ms cubic-bezier(.2,.9,.3,1) 200ms both; }
+.hero p  { animation: fadeUp 900ms cubic-bezier(.2,.9,.3,1) 350ms both; }
+.hero .btn {
+    animation: fadeUp 1000ms cubic-bezier(.2,.9,.3,1) 520ms both,
+               floatY 6s ease-in-out 1s infinite;
+    will-change: transform, opacity;
+}
+
+/* Slow gradient movement on the hero background */
+.hero { background-size: 200% 200%; animation: gradientShift 14s ease-in-out infinite; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero h1, .hero p, .hero .btn, .hero { animation: none !important; transition: none !important; }
+}
+
+/* Small tweak so hover still feels snappy when animation runs */
+.hero .btn:hover { animation: none !important; }
+
+.hero h1 {
+    font-size: 3.5rem;         /* Very large name text */
+    color: #fafafa;            /* Secondary foreground (light color) */
+    margin-bottom: 15px;       /* Space below name */
+    font-weight: 700;          /* Extra bold */
+}
+
+.hero p {
+    font-size: 1.3rem;         /* Medium-large tagline text */
+    color: #dde8e3;            /* Primary foreground color */
+    margin-bottom: 35px;       /* Space below tagline */
+}
+
+/* Decorative inner box and boxed name style */
+.hero {
+    position: relative; /* enable absolute pseudo element */
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 10px 30px rgba(2,6,23,0.18) inset, 0 8px 30px rgba(0,0,0,0.12);
+    pointer-events: none;
+    z-index: 0;
+    transform: translateY(10px) scale(0.995);
+    opacity: 0;
+    animation: boxEnter var(--dur-medium) var(--ease-std) 150ms both;
+}
+
+@keyframes boxEnter {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* subtle sheen moving across hero */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0) 60%);
+    transform: translateX(-60%);
+    filter: blur(12px);
+    mix-blend-mode: overlay;
+    opacity: 0.75;
+    animation: sheen 6s linear infinite;
+}
+
+@keyframes sheen {
+    0% { transform: translateX(-60%); }
+    100% { transform: translateX(160%); }
+}
+
+@keyframes boxPop {
+    from { transform: scale(0.98); }
+    to   { transform: scale(1); }
+}
+
+/* Put content above the decorative box */
+.hero > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Bubbles background animation (decorative) */
+.bubbles {
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* sit above ::before but below sheen (::after) and content */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -10%;
+    background: var(--accent-navy-06);
+    border-radius: 50%;
+    opacity: 0.9;
+    filter: blur(2px);
+    transform: translateY(0) scale(1);
+    will-change: transform, opacity;
+}
+
+/* individual bubble sizes/positions/durations */
+.bubble.b1 { left: 6%; width: 80px; height: 80px; animation: rise 16s linear infinite; animation-delay: 0s; background: var(--accent-teal-08); }
+.bubble.b2 { left: 18%; width: 40px; height: 40px; animation: rise 12s linear infinite; animation-delay: 2s; opacity:0.88; background: var(--accent-coral-08); }
+.bubble.b3 { left: 32%; width: 60px; height: 60px; animation: rise 18s linear infinite; animation-delay: 4s; opacity:0.85; background: var(--accent-amber-08); }
+.bubble.b4 { left: 48%; width: 30px; height: 30px; animation: rise 10s linear infinite; animation-delay: 1s; opacity:0.75; background: var(--accent-teal-08); }
+.bubble.b5 { left: 64%; width: 90px; height: 90px; animation: rise 20s linear infinite; animation-delay: 3s; opacity:0.9; background: var(--accent-coral-08); }
+.bubble.b6 { left: 76%; width: 50px; height: 50px; animation: rise 14s linear infinite; animation-delay: 5s; opacity:0.8; background: var(--accent-amber-08); }
+.bubble.b7 { left: 84%; width: 36px; height: 36px; animation: rise 11s linear infinite; animation-delay: 6s; opacity:0.78; background: var(--accent-teal-08); }
+.bubble.b8 { left: 90%; width: 72px; height: 72px; animation: rise 17s linear infinite; animation-delay: 8s; opacity:0.88; background: var(--accent-amber-08); }
+
+@keyframes rise {
+    0% { transform: translateY(0) translateX(0) scale(0.95); opacity: 0; }
+    8% { opacity: 0.7; }
+    60% { opacity: 0.3; }
+    100% { transform: translateY(-140%) translateX(40px) scale(1.08); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bubbles, .bubble { display: none !important; }
+}
+
+/* Add a subtle boxed background to the name */
+.hero h1 {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 6px 20px rgba(2,6,23,0.18);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation: fadeUp 800ms cubic-bezier(.2,.9,.3,1) 200ms both, boxPop 700ms ease 150ms both;
+}
+
+@media (max-width: 480px) {
+    .hero::before {
+        top: 12px; left: 12px; right: 12px; bottom: 12px;
+        border-radius: 12px;
+    }
+    .hero h1 { padding: 6px 12px; font-size: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero::before,
+    .hero h1 {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ============================================== */
+/* RESPONSIVE/INTERACTIVE ANIMATIONS & REVEAL     */
+/* Enhances perceived responsiveness and motion    */
+/* ============================================== */
+
+/* Baseline hidden state for scroll-reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(18px) scale(0.995);
+    will-change: opacity, transform;
+    transition: opacity var(--dur-medium) var(--ease-std), transform var(--dur-medium) var(--ease-std);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    /* when becoming visible, allow a small stagger using the delay var */
+}
+
+/* Nav link animated underline */
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 3px;
+    background: var(--accent-amber);
+    border-radius: 3px;
+    transform: translateX(-50%);
+    transition: width 260ms cubic-bezier(.2,.9,.3,1);
+}
+
+nav a:hover::after,
+nav a:focus::after {
+    width: 56%;
+}
+
+/* Active nav link state */
+nav a.active {
+    color: var(--accent-amber);
+    font-weight: 700;
+}
+
+nav a.active::after { width: 56%; }
+
+/* Slight interactive pulse on the logo/title */
+nav h2 {
+    transition: transform 220ms ease, color 220ms ease;
+}
+
+nav h2:hover { transform: translateY(-2px) scale(1.02); }
+
+/* Make buttons feel snappy on press */
+.btn {
+    transition: transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn:focus-visible { outline: 3px solid rgba(14,207,127,0.18); outline-offset: 4px; }
+
+/* Make project cards respond faster */
+.project-card {
+    transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms ease, border-color 260ms ease;
+}
+
+/* Allow 3D transform space for tilt */
+.project-card { transform-origin: center; perspective: 1200px; }
+
+.project-card:hover {
+    transform: translateY(-18px) scale(1.02);
+}
+
+/* Skills quick pop on hover */
+.skill {
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease;
+}
+
+.skill:hover { transform: translateY(-8px) scale(1.05); }
+
+/* CTA shimmer */
+.btn { position: relative; overflow: hidden; }
+.btn::before {
+    content: '';
+    position: absolute;
+    top: -10%; left: -40%;
+    width: 60%; height: 120%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg) translateX(0);
+    opacity: 0;
+    transition: transform var(--dur-medium) var(--ease-std), opacity var(--dur-fast) ease;
+    pointer-events: none;
+}
+.btn:hover::before { transform: translateX(220%); opacity: 1; transition: transform 420ms var(--ease-std); }
+
+/* subtle pulsing on primary hero title */
+.hero h1 { text-shadow: 0 6px 18px rgba(2,6,23,0.12); }
+.hero h1.pulse { animation: pulse 2200ms ease-in-out infinite; }
+@keyframes pulse { 0% { transform: translateY(0); text-shadow: 0 6px 18px rgba(2,6,23,0.12); } 50% { transform: translateY(-4px); text-shadow: 0 14px 36px rgba(2,6,23,0.14); } 100% { transform: translateY(0); text-shadow: 0 6px 18px rgba(2,6,23,0.12); } }
+
+/* Small, tasteful nav background blur for depth */
+nav { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+
+/* Respect reduced-motion globally for our added transitions */
+@media (prefers-reduced-motion: reduce) {
+    .reveal, nav a::after, .btn, .project-card, .skill, nav h2 { transition: none !important; animation: none !important; }
+}
+
+/* ============================================== */
+/* BUTTON - The "View My Work" button            */
+/* ============================================== */
+.btn {
+    display: inline-block;     /* Makes it a block element but inline */
+    background-color: #242424; /* Secondary dark background */
+    color: #fafafa;            /* Secondary foreground (light text) */
+    padding: 15px 40px;        /* Top/bottom and left/right spacing */
+    text-decoration: none;     /* Removes underline */
+    border-radius: 50px;       /* Makes it pill-shaped */
+    font-weight: 600;          /* Semi-bold text */
+    font-size: 1.1rem;         /* Slightly larger text */
+    transition: all 0.3s ease; /* Smooth transition */
+    margin: 5px;               /* Small gap between buttons */
+    box-shadow: 0 5px 20px rgba(36, 36, 36, 0.4); /* Dark shadow */
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05); /* Moves up and scales slightly */
+    box-shadow: 0 15px 35px rgba(0, 98, 57, 0.5); /* Green glow on hover */
+    background-color: #006239; /* Primary green on hover */
+}
+
+.btn-secondary {
+    background-color: transparent; /* Transparent background */
+    color: #fafafa;            /* Secondary foreground (light text) */
+    border: 2px solid #fafafa; /* Light border */
+    -webkit-backdrop-filter: blur(10px); /* Frosted glass effect */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+}
+
+.btn-secondary:hover {
+    background-color: #fafafa; /* Light background on hover */
+    border-color: #fafafa;     /* Light border */
+    color: #006239;            /* Primary green text on hover */
+}
+
+/* ============================================== */
+/* ABOUT SECTION                                  */
+/* ============================================== */
+#about {
+    text-align: center;        /* Centers the text */
+    background-color: #fafafa00; /* Secondary foreground (light background) */
+    border-left: 5px solid #179661; /* Primary green accent border */
+}
+
+#about p {
+    max-width: 800px;          /* Limits text width for readability */
+    margin: 0 auto;            /* Centers the paragraph */
+    font-size: 1.15rem;        /* Slightly larger text */
+    line-height: 1.8;          /* More space between lines */
+    color: #0d0c0c;            /* Secondary dark text */
+}
+
+/* ============================================== */
+/* SKILLS SECTION                                 */
+/* ============================================== */
+#skills {
+    background: linear-gradient(135deg, #dde8e3 0%, #cfddd5 100%); /* Primary foreground gradient */
+    border-left: 5px solid #1bdc8c; /* Primary green accent border */
+}
+
+.skills-container {
+    display: flex;             /* Flexbox layout */
+    gap: 15px;                 /* Space between skill badges */
+    flex-wrap: wrap;           /* Wraps to new line if needed */
+    justify-content: center;   /* Centers the skills */
+}
+
+.skill {
+    background-color: #18b878; /* Primary green background */
+    color: #15530f;            /* Secondary foreground (light text) */
+    padding: 12px 28px;        /* Top/bottom and left/right spacing */
+    border-radius: 50px;       /* Pill-shaped badges */
+    font-weight: 600;          /* Semi-bold text */
+    font-size: 1rem;           /* Normal text size */
+    box-shadow: 0 5px 20px rgba(0, 98, 57, 0.3); /* Green shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    border: 2px solid #0b0e0d; /* Primary green border */
+}
+
+.skill:hover {
+    transform: translateY(-5px) scale(1.1); /* Moves up and scales */
+    box-shadow: 0 10px 30px rgba(48, 76, 64, 0.5); /* Stronger green glow on hover */
+    background-color: #242424; /* Secondary dark background on hover */
+    border-color: #006239;     /* Keep green border */
+}
+
+/* ============================================== */
+/* PROJECTS SECTION                               */
+/* ============================================== */
+.projects-container {
+    display: grid;             /* Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive columns */
+    gap: 30px;                 /* Space between project cards */
+    margin-top: 50px;          /* Space above projects */
+}
+
+.project-card {
+    background-color: #b8f9c4fe; /* Secondary foreground (light background) */
+    padding: 30px;             /* Spacing inside card */
+    border-radius: 20px;       /* More rounded corners */
+    border: 3px solid #101a15; /* Primary foreground border */
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    box-shadow: 0 8px 25px rgba(238, 7, 7, 0.1); /* Enhanced shadow */
+}
+
+.project-card:hover {
+    transform: translateY(-15px) scale(1.02); /* Moves up and scales */
+    box-shadow: 0 20px 50px rgba(0, 98, 57, 0.3); /* Green glow */
+    border-color: #0cf393;     /* Primary green border on hover */
+}
+
+.project-card h3 {
+    color: #090909;            /* Primary green color */
+    margin-bottom: 15px;       /* Space below title */
+    font-size: 1.5rem;         /* Medium-large text */
+    font-weight: 700;          /* Bold text */
+}
+
+.project-card p {
+    color: #1f1e1e;            /* Secondary dark text */
+    margin-bottom: 20px;       /* Space below description */
+    line-height: 1.6;          /* Space between lines */
+}
+
+.project-card a {
+    background-color: #161817; /* Primary green background */
+    color: #b3ea0b;            /* Secondary foreground (light text) */
+    text-decoration: none;     /* Removes underline */
+    font-weight: 600;          /* Semi-bold */
+    display: inline-block;     /* Makes it a block but inline */
+    padding: 8px 20px;         /* Add padding */
+    border-radius: 20px;       /* Rounded button */
+    transition: all 0.3s ease; /* Smooth transition */
+    box-shadow: 0 3px 10px rgba(0, 98, 57, 0.3); /* Green shadow */
+}
+
+.project-card a:hover {
+    transform: scale(1.1);     /* Scales on hover */
+    box-shadow: 0 5px 20px rgba(0, 98, 57, 0.5); /* Stronger green glow on hover */
+    background-color: #242424; /* Secondary dark background on hover */
+}
+
+/* ============================================== */
+/* CONTACT SECTION                                */
+/* ============================================== */
+#contact {
+    background-color: #dff6e9; /* Secondary foreground (light background) */
+    text-align: center;        /* Centers all text */
+    border-left: 5px solid #006239; /* Primary green accent border */
+}
+
+#contact p {
+    font-size: 1.15rem;        /* Slightly larger text (same as about section) */
+    margin: 10px 0;            /* Top and bottom spacing */
+    color: #160202;            /* Secondary dark text */
+}
+
+#contact a {
+    color: #121715;            /* Primary green text */
+    text-decoration: none;     /* Removes underline */
+    font-weight: 600;          /* Semi-bold */
+    transition: all 0.3s ease; /* Smooth transition */
+    padding: 5px 15px;         /* Add padding */
+    border-radius: 8px;        /* Rounded */
+    display: inline-block;     /* Block but inline */
+}
+
+#contact a:hover {
+    background-color: #15f396; /* Primary green background */
+    color: #fafafa;            /* Secondary foreground (light text) on hover */
+    transform: scale(1.05);    /* Slightly larger */
+    box-shadow: 0 5px 15px rgba(30, 33, 31, 0.4); /* Green glow */
+}
+
+/* ============================================== */
+/* FOOTER - Bottom section with copyright        */
+/* ============================================== */
+footer {
+    background: linear-gradient(135deg, #6bd731 0%, #1a1a1a 100%); /* Secondary dark gradient */
+    color: #fafafa;            /* Secondary foreground (light text) */
+    text-align: center;        /* Centers text */
+    padding: 30px 20px;        /* Top/bottom and left/right spacing */
+    font-size: 1rem;           /* Normal text size */
+    margin-top: 40px;          /* Space above footer */
+    border-radius: 20px 20px 0 0; /* Rounded top corners */
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2); /* Upward shadow */
+}
+
+/* ============================================== */
+/* RESPONSIVE DESIGN - Makes site work on mobile */
+/* ============================================== */
+/* This section only applies when screen width is 768px or smaller (tablets and phones) */
+@media (max-width: 768px) {
+    
+    /* Navigation adjustments for mobile */
+    .nav-content {
+        flex-direction: column; /* Stacks logo and links vertically */
+        gap: 15px;             /* Space between logo and links */
+        padding: 0 20px;       /* Less side padding on mobile */
+    }
+
+    nav ul {
+        gap: 15px;             /* Less space between links */
+        flex-wrap: wrap;       /* Links wrap to new line if needed */
+        justify-content: center; /* Centers the links */
+    }
+
+    /* Hero section adjustments for mobile */
+    .hero {
+        padding: 80px 20px;    /* Less top/bottom padding on mobile */
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;     /* Smaller name text on mobile */
+    }
+
+    .hero p {
+        font-size: 1.1rem;     /* Smaller tagline on mobile */
+    }
+
+    /* Section adjustments for mobile */
+    section {
+        padding: 60px 20px;    /* Less padding on mobile */
+    }
+
+    section h2 {
+        font-size: 2rem;       /* Smaller headings on mobile */
+        margin-bottom: 35px;   /* Less space below headings */
+    }
+
+    /* Projects adjustments for mobile */
+    .projects-container {
+        grid-template-columns: 1fr; /* Single column layout on mobile */
+        gap: 20px;             /* Less space between cards */
+    }
+
+    /* Button adjustments for mobile */
+    .btn {
+        padding: 12px 30px;    /* Smaller button on mobile */
+        font-size: 1rem;       /* Smaller button text */
+    }
+}
+
+/* ============================================== */
+/* CUSTOM OVERRIDES - quick theme changes        */
+/* ============================================== */
+/* Change hero background to use the local image with a subtle gradient overlay */
+.hero {
+    /* Layered background: gradient overlay above the image. Tweak overlay via --hero-overlay-* vars. */
+    background: linear-gradient(135deg, var(--hero-overlay-start), var(--hero-overlay-end)), url('e.avif') center/cover no-repeat !important;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25) !important;
+    color: #fafafa !important;
+}
+
+/* Add this class to the hero to remove the colored overlay and show the image untouched */
+.hero--no-overlay {
+    background: url('e.avif') center/cover no-repeat !important;
+}
